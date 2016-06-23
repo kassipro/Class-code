@@ -2,15 +2,33 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WordCounter {
-    private class Counter {
+    private static class Counter {
+        private long cnt = 0;
         // declare a private long member variable
         // write a no argument constructor, starts at 0
+        public Counter() {
+        }
 
         // write a method "current" to get the current value
+        public long current() {
+
+        }
 
         // write a method, "inc" to increment the value
+        public void inc() {
+
+        }
 
         // write an equals and toString with @Override
+        @Override
+        public String toString() {
+
+        }
+
+        @Override
+        public boolean equals(Object o) {
+
+        }
     }
 
     private final Map<String, Counter> counts;
