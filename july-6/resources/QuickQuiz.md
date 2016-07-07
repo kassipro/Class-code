@@ -11,4 +11,4 @@
 
 ## Inheritance
   1. If `class A` defines a method called `callMe` and `class B` extends `class A` and overrides `callMe`, who's version does this code call? `B b = new B(); b.callMe();`
-  2. Who's version does this code call? `A a = new B(); b.callMe();`
+  2. Who's version does this code call? `A a = new B(); a.callMe();`
