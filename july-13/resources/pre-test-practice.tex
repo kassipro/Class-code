@@ -1,0 +1,91 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\newcommand*{\Perm}[2]{{}^{#1}\!P_{#2}}%
+\title{Pre-test practice recitation}
+\date{\today}
+\author{CS161}
+\begin{document}
+\maketitle
+
+
+\section{General Instructions}
+Refer to the PDF in the class code (july-11/resources): \\
+\href{https://github.com/csu161/Class-code/blob/master/july-11/resources/inductive-proof-examples.pdf}{Inductive Proof Examples}
+
+
+\section{Counting}
+\begin{enumerate}
+\item How many positive integers less than 1000
+  \begin{enumerate}
+  \item have exactly three digits?
+  \item have an odd number of digits?
+  \item have at least one digit equal to 9?
+  \item have no odd digits?
+  \item have two consecutive digits equal to 5?
+  \item are palindromes?
+  \end{enumerate}
+\item How many ways are there to choose a dozen donuts from 20 varieties
+  \begin{enumerate}
+  \item if there are no two donuts of the same variety?
+  \item if all donuts are of the same variety?
+  \item if there are no restrictions?
+  \item if there are at least two varieties?
+  \item if there must be at least six blueberry donuts?
+  \end{enumerate}
+\item In how many different ways can five elements be selected in order from a set with three elements when repetition is allowed?
+\item How many strings of six letters are there?
+  \begin{enumerate}
+  \item if only lowercase is allowed?
+  \item if any case is allowed?
+  \end{enumerate}
+\item In how many ways can you stack 7 different books, so that a specific book B is on the third place?
+\item In how many ways can you take 3 marbles out of a box with 15 different marbles?
+\item In how many ways can you take 5 cards, with at least 2 aces, out of a deck of 52 cards?
+\item Find $n$ if
+  \begin{enumerate}
+  \item $\Perm{n}{2} = 110$
+  \item $\Perm{n}{n} = 5040$
+  \item $\Perm{n}{4} = 12 * \Perm{n}{2}$
+  \end{enumerate}
+\item Find $n$ if
+  \begin{enumerate}
+  \item ${n \choose 2} = 45$
+  \item ${n \choose 3} = \Perm{n}{2}$
+  \item ${n \choose 5} = {n \choose 2}$
+  \end{enumerate}
+\item If the numbers from 1 to 1000 are written out on a piece of paper, how many 9's are on that paper?
+\end{enumerate}
+
+
+
+\section{Proofs}
+\begin{enumerate}
+\item Prove that for all positive integers, $n$:
+\[ \frac{2}{3} + \frac{2}{9} + \frac{2}{27} + ... + \frac{2}{3^n} = 1 - \frac{1}{3^n} \]
+\item Which amounts of postage can you make using 5 and 9 cent stamps?
+\item Find $f(1)$, $f(2)$, $f(3)$, and $f(4)$ if $f(n)$ is defined recursively by $f(0) = 1$ and for $n = 0, 1, 2, ...$
+  \begin{enumerate}
+  \item $f(n + 1) = f(n) + 2$
+  \item $f(n + 1) = 3f(n)$
+  \item $f(n + 1) = 2^{f(n)}$
+  \item $f(n + 1) = f(n)^2 + f(n) + 1$
+  \end{enumerate}
+\item Let $P(n)$ be the statement that
+\[ 1 + \frac{1}{4} + \frac{1}{9} + ... + \frac{1}{n^2} < 2 - \frac{1}{n} \]
+where $n$ is an integer greater than 1.
+  \begin{enumerate}
+  \item What is the statement $P(2)$?
+  \item Show that $P(2)$ is true, completing the basis step of the proof.
+  \item What is the \textit{inductive hypothesis}?
+  \item What do you need to prove in the inductive step?
+  \item Complete the inductive step.
+  \item Explain why these steps show that this inequality is true for all $n$ where $n$ is an integer greater than 1.
+  \end{enumerate}
+\item Prove by induction that:
+\[ 1 + 3 + 5 + ... + (2n - 1) = n^2 \]
+\end{enumerate}
+
+\end{document}
