@@ -35,7 +35,7 @@ P(1): F(1) = \frac{1(1 + 1)}{2}
 \subsubsection{Inductive step}
 We will prove that \textbf{if} $P(k)$ holds (is true) for some $k \in N$, \textbf{then} $P(k + 1)$ is also true. Prove:
 \begin{equation}
-P(k) \implies P(k + 1): \forall k \in N
+P(k) \implies P(k + 1), \forall k \in N
 \end{equation}
 We start with the \textit{inductive hypothesis}, we assume for the time that $P(k)$ holds. Assume:
 \begin{equation}
@@ -63,21 +63,128 @@ And so we have proved $P(k + 1)$ (7) by showing that the left side is equal to t
 \subsection{Conclusion}
 We have proved that $P(n)$ holds for a base case of $P(1)$ and that for all $k \in N$, $P(k)$ being true implies that $P(k + 1)$ is also true. Therefore $P(n)$ holds for all $n > 0$ (all natural numbers).
 \[P(1): F(1) = \frac{1(1 + 1)}{2}\]
-\[P(k) \implies P(k + 1): \forall k \in N \]
-\[ \therefore P(n): \forall n \in N \]
+\[P(k) \implies P(k + 1), \forall k \in N \]
+\[ \therefore P(n), \forall n \in N \]
 
 
 \section{Making postage with 3 and 5 cent stamps}
-We want to prove that all postage amounts greater than or equal to 8 cents can be made with combinations of 3 and 5 cent stamps
+We want to prove that all postage amounts greater than 7 cents can be made with combinations of 3 and 5 cent stamps
+
+\subsection{Definitions}
+We will define a predicate to talk about whether a particular number can be represented as a summation of a non-negative multiple of 3 and a non-negative multiple of 5.
+\begin{equation}
+P(n): n = 3a + 5b \mid a,b \in \mathbb Z_{\ge 0}
+\end{equation}
+Note that $P(n)$ may be true or false for any given number $n$. For example, $P(2)$ is false, as 2 cents of postage cannot be made with 3 and 5 cent stamps. However, $P(11)$ is true, because 11 cents of postage can be made with a 5 cent stamp and two 3 cent stamps.
+
+\subsection{Goal}
+Our goal is to prove that $P(n)$ holds for all values of $n$ greater than 7.
+\begin{equation}
+\forall n \in \mathbb Z_{> 7} : P(n)
+\end{equation}
+
+\subsection{Proof by induction}
+\subsubsection{Base case}
+To show that the base case $P(8)$ is true, we will state the base case, then show that we can find suitable non-negative integers $a$ and $b$. Prove:
+\begin{equation}
+P(8): 8 = 3a + 5b
+\end{equation}
+\[ a,b = 1 \]
+
+\subsubsection{Inductive step}
+We will prove that \textbf{if} $P(k)$ holds (is true) for some $k \in \mathbb Z_{> 7}$, \textbf{then} $P(k + 1)$ is also true. Prove:
+\begin{equation}
+P(k) \implies P(k + 1), \forall k \in \mathbb Z_{> 7}
+\end{equation}
+We start with the \textit{inductive hypothesis}, we assume for the time that $P(k)$ holds. Assume:
+\begin{equation}
+P(k): k = 3a + 5b \mid a,b \in \mathbb Z_{\ge 0}
+\end{equation}
+Now, assuming that $P(k)$ is true, prove:
+\begin{equation}
+P(k + 1): k + 1 = 3c + 5d \mid c,d \in \mathbb Z_{\ge 0}
+\end{equation}
+If $b > 0$, then $d = b - 1$ and $c = a + 2$ results in:
+\[ 3c + 5d = 3(a + 2) + 5(b - 1) = 3a + 5b + 1 = k + 1 \]
+By our inductive hypothesis, we assumed that $a$ and $b$ were non-negative integers, and so $c$ and $d$ will be too.
+
+If $b = 0$, then $k$ must be a multiple of 3. The smallest multiple of 3 in $\mathbb Z_{> 7}$ is 9, which is $3 * 3$. All other multiples of 3 in $\mathbb Z_{> 7}$ will have a greater or equal number of 3 in their all-3 representation ($b = 0$). Therefore if $b = 0$, then $a \ge 3$. So $d = b + 2$ and $c = a - 3$ results in:
+\[ 3c + 5d = 3(a - 3) + 5(b + 2) = 3a + 5b + 1 = k + 1 \]
+By our inductive hypothesis and our reasoning that $a$ must be greater than or equal to 3 in the case where $b = 0$, then $c$ and $d$ will be non-negative integers too.
+
+And so we have proved $P(k + 1)$ (13) by assuming $P(k)$ (12) was true. If $P(k)$, then $P(k + 1$ (11).
+
+\subsection{Conclusion}
+We have proved that $P(n)$ holds for a base case of $P(8)$ and that for all $k \in \mathbb Z_{> 7}$, $P(k)$ being true implies that $P(k + 1)$ is also true. Therefore $P(n)$ holds for all $n > 7$.
+\[P(8): 8 = 3(1) + 5(1) \]
+\[P(k) \implies P(k + 1), \forall k \in  \mathbb Z_{> 7}\]
+\[ \therefore P(n), \forall n \in \mathbb Z_{> 7} \]
+
+
+\section{Proof with inequality}
+We want to prove that for any integer $n$ greater than 6, $n!$ is greater than $3^n$.
+\[n! > 3^n \mid n > 6 \]
+\subsection{Definitions}
+We will define a predicate to let us talk about an inequality relationship between $n!$ and $3^n$. Let:
+\begin{equation}
+P(n): n! > 3^n
+\end{equation}
+Note that $P(n)$ may be true or false for any particular choice of $n$. For example, $P(2)$ is false because $2!$ is not greater than $3^2$. But $P(7)$ is true because $7!$ (5040) \textbf{is} greater than $3^7$ (2187).
+
+\subsection{Goal}
+Our goal is to prove that $P(n)$ holds for all values of $n$ greater than 6.
+\begin{equation}
+\forall n \in \mathbb Z_{> 6} : P(n)
+\end{equation}
+
+\subsection{Proof by induction}
+\subsubsection{Base case}
+To show that the base case $P(7)$ is true, we will state the base case, then show that the inequality is true. Prove:
+\begin{equation}
+P(7): 7! > 3^7
+\end{equation}
+\[ 7! = 5040 > 2187 = 3^7 \]
+
+\subsubsection{Inductive step}
+We will prove that \textbf{if} $P(k)$ holds (is true) for some $k \in \mathbb Z_{> 6}$, \textbf{then} $P(k + 1)$ is also true. Prove:
+\begin{equation}
+P(k) \implies P(k + 1), \forall k \in \mathbb Z_{> 6}
+\end{equation}
+We start with the \textit{inductive hypothesis}, we assume for the time that $P(k)$ holds. Assume:
+\begin{equation}
+P(k): k! > 3^k \mid k \in \mathbb Z_{> 6}
+\end{equation}
+Now, assuming that $P(k)$ is true, prove:
+\begin{equation}
+P(k + 1): (k + 1)! > 3^{k + 1}
+\end{equation}
+Starting with the left side:
+\[ (k + 1)! = (k + 1) k! \]
+Using our inductive hypothesis:
+\[ (k + 1)! > (k + 1) 3^k \]
+\[ (k + 1)! > \frac{1}{1} (k + 1) 3^k \]
+\[ (k + 1)! > \frac{3}{3} (k + 1) 3^k \]
+\[ (k + 1)! > \frac{k + 1}{3} 3 * 3^k \]
+\[ (k + 1)! > \frac{k + 1}{3} 3^1 * 3^k \]
+\[ (k + 1)! > \frac{k + 1}{3} 3^{k + 1} \]
+And if $\frac{k + 1}{3}$ is greater than 1:
+\[ (k + 1)! > \frac{k + 1}{3} 3^{k + 1} > 3^{k + 1} \]
+therefore:
+\[ (k + 1)! > 3^{k + 1} \]
+Since $k \in \mathbb Z_{> 6}$, we know that $\frac{k + 1}{3}$ will always be greater than $\frac{6}{3}$ which is greater than 1.
+And so we have proved $P(k + 1)$ (19) by assuming $P(k)$ (18) was true. If $P(k)$, then $P(k + 1$ (17).
+
+\subsection{Conclusion}
+We have proved that $P(n)$ holds for a base case of $P(7)$ and that for all $k \in \mathbb Z_{> 6}$, $P(k)$ being true implies that $P(k + 1)$ is also true. Therefore $P(n)$ holds for all $n > 6$.
+\[P(7): 7! > 3^7 \]
+\[P(k) \implies P(k + 1), \forall k \in  \mathbb Z_{> 6}\]
+\[ \therefore P(n), \forall n \in \mathbb Z_{> 6} \]
+
 
 
 \section{Another summation}
 We want to prove that $ 1 + 4 + 7 + ... + (3n - 2) $ can be calculated with $ \frac{n(3n - 1)}{2} $
 
-
-\section{Proof with inequality}
-We want to prove that for any number $n$ greater than or equal to 7, $n!$ is greater than $3^n$.
-\[n! > 3^n: n \geq 7 \]
 
 
 \end{document}
