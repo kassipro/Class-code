@@ -1,13 +1,16 @@
 ## Test A
 ### Proofs
+15 points each
   - [ ] 4.7
   - [ ] 5.1
   - [ ] 7.1
 
 ### Recursion
+5 points each
   - [ ] 7.3
 
 ### Simple Counting
+1 point each
   - [ ] 1.1
   - [ ] 1.2
   - [ ] 1.3
@@ -16,6 +19,7 @@
   - [ ] 1.9
 
 ### Medium Counting
+4 points each
   - [ ] 2.1
   - [ ] 2.5
   - [ ] 2.8
@@ -23,6 +27,7 @@
   - [ ] 2.12
 
 ### Advanced Counting
+8 points each
   - [ ] 3.2
   - [ ] 3.5
   - [ ] 3.6
