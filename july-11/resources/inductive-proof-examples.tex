@@ -3,7 +3,10 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \title{Inductive proof examples}
+\author{CS161}
 \begin{document}
+\maketitle
+
 \section{Sum from 1 to n}
 We want to prove that \(1 + 2 + ... + n \) can be calculated with \( \frac{n(n+1)}{2} \)
 \subsection{Definitions}
@@ -181,6 +184,7 @@ We have proved that $P(n)$ holds for a base case of $P(7)$ and that for all $k \
 \[ \therefore P(n), \forall n \in \mathbb Z_{> 6} \]
 
 
+
 \section{Proof of divisibility}
 This is related to our stamp problem. We want to prove that for any integer $n$ greater than or equal to 0, $3^{2n} - 1$ is divisible by 8.
 \[ 3^{2n} - 1 \equiv 0 \mod 8 \]
@@ -226,7 +230,7 @@ Starting with the left side:
 The left expression, ($3^{2k} * 8$) is clearly divisible by 8 because any whole number multiplied by 8 is divisible by 8. (We know it is a whole number because k is non-negative). And the right expression ($3^{2k} - 1$) is, by our \textit{inductive hypothesis}, divisible by 8. So
 \[ 3^{2(k + 1)} - 1 = 8a + 8b \mid a,b \in \mathbb Z\]
 \[ 3^{2(k + 1)} - 1 = 8(a + b) \mid a,b \in \mathbb Z\]
-Therefore $3^{2(k + 1)} - 1$ is divisible by 8, because any whole number times 8 is divisible by 8. And so we have proved $P(k + 1)$ (25) by assuming $P(k)$ (24) was true. If $P(k)$, then $P(k + 1$ (23).
+Therefore $3^{2(k + 1)} - 1$ is divisible by 8, because any whole number times 8 is divisible by 8. And so we have proved $P(k + 1)$ (25) by assuming $P(k)$ (24) was true. If $P(k)$, then $P(k + 1)$ (23).
 
 \subsection{Conclusion}
 We have proved that $P(n)$ holds for a base case of $P(0)$ and that for all $k \in \mathbb Z_{\ge 0}$, $P(k)$ being true implies that $P(k + 1)$ is also true. Therefore $P(n)$ holds for all $n \ge 0$.
@@ -234,9 +238,110 @@ We have proved that $P(n)$ holds for a base case of $P(0)$ and that for all $k \
 \[P(k) \implies P(k + 1), \forall k \in \mathbb Z_{\ge 0}\]
 \[ \therefore P(n), \forall n \in \mathbb Z_{\ge 0} \]
 
-\section{Another summation}
-We want to prove that $ 1 + 4 + 7 + ... + (3n - 2) $ can be calculated with $ \frac{n(3n - 1)}{2} $
 
+
+\section{Another inequality proof}
+Prove that for all integers \( n \geq 4 \) that \( n^2 \leq n! \)
+\subsection{Definitions}
+Let:
+\begin{equation}
+P(n): n^2 \leq n!
+\end{equation}
+
+\subsection{Goal}
+We will prove
+\begin{equation}
+\forall n \in \mathbb Z_{\geq 4} : P(n)
+\end{equation}
+
+\subsection{Proof by induction}
+\subsubsection{Base case}
+\begin{equation}
+P(4): 4^2 \leq 4!
+\end{equation}
+\[ 16 \leq 24 \]
+
+\subsubsection{Inductive step}
+We will prove:
+\begin{equation}
+P(k) \implies P(k + 1), \forall k \in \mathbb Z_{\geq 4}
+\end{equation}
+\textit{Inductive hypothesis}, assume:
+\begin{equation}
+P(k): k^2 \leq k!
+\end{equation}
+Now prove:
+\begin{equation}
+P(k + 1): (k + 1)^2 \leq (k + 1)!
+\end{equation}
+Starting with the left side:
+\[ (k + 1)^2 = k^2 + 2k + 1 \]
+Using our inductive hypothesis:
+\[ (k + 1)^2 \leq k! + 2k + 1 \]
+If we can prove that for $k \geq 4$:
+\[ P'(k): k! + 2k + 1 \leq (k + 1)! \]
+then we will have proved $P(k + 1)$.
+
+We can rewrite $P'(k)$ to equivalent expressions:
+\[ P'(k): 2k + 1 \leq (k + 1)! - k! \]
+\[ P'(k): 2k + 1 \leq (k + 1)k! - k! \]
+\[ P'(k): 2k + 1 \leq ((k + 1) - 1)k! \]
+\[ P'(k): 2k + 1 \leq k * k! \]
+\[ P'(k): 1 + \frac{1}{2k} \leq \frac{k * k!}{2k} \]
+\[ P'(k): 1 + \frac{1}{2k} \leq \frac{k!}{2} \]
+If $k > 0$, then $1 + \frac{1}{2k} < 2$. And if $k > 2$, then $\frac{k!}{2} = k * (k - 1) * ... * 3$ which is greater than 2. So for $k \geq 4$:
+\[ 1 + \frac{1}{2k} < 2 < \frac{k!}{2} \]
+Therefore $P'(k)$ and $P(k + 1)$ are true.
+
+\subsection{Conclusion}
+We have proved that $P(n)$ holds for a base case of $P(4)$ and that for all $k \in \mathbb Z_{\geq 4}$, $P(k)$ implies $P(k + 1)$. Therefore $P(n)$ holds for all $n \geq 4$.
+
+
+\section{Another divisibility proof}
+Prove that 6 evenly divides \( n^3 - n \) for every non-negative integer $n$.
+\subsection{Definitions}
+Let:
+\begin{equation}
+P(n): n^3 - n \equiv 0 \mod 6
+\end{equation}
+
+\subsection{Goal}
+We will prove that $P(n)$ holds for all values of $n$ greater than or equal to 0.
+\begin{equation}
+\forall n \in \mathbb Z_{\ge 0} : P(n)
+\end{equation}
+
+\subsection{Proof by induction}
+\subsubsection{Base case}
+\begin{equation}
+P(0): 0^3 - 0 \equiv 0 \mod 6
+\end{equation}
+\[ 0^3 - 0 = 0 \]
+
+\subsubsection{Inductive step}
+We will prove:
+\begin{equation}
+P(k) \implies P(k + 1), \forall k \in \mathbb Z_{\geq 0}
+\end{equation}
+\textit{Inductive hypothesis}, assume:
+\begin{equation}
+P(k): k^3 - k \equiv 0 \mod 6
+\end{equation}
+Now prove:
+\begin{equation}
+P(k + 1): (k + 1)^3 - (k + 1) \equiv 0 \mod 6
+\end{equation}
+Starting with the left side:
+\[ (k + 1)^3 - (k + 1) = k^3 + 3k^2 + 3k + 1 - (k + 1)\]
+\[ (k + 1)^3 - (k + 1) = k^3 + 3k^2 + 2k \]
+\[ (k + 1)^3 - (k + 1) = k^3 - k + 3k^2 + 3k \]
+\[ (k + 1)^3 - (k + 1) = (k^3 - k) + 3(k^2 + k) \]
+By our \textit{inductive hypothesis} the expression $k^3 - k$ is divisible by 6. If we can prove that $k^2 + k$ is a multiple of 2 (even), then the expression $3(k^2 + k)$ is also divisible by 6, proving $P(k + 1)$.
+
+If $k$ is even, then $k^2 + k$ is even, and if $k$ is odd then $k^2 + k$ is also even. Therefore $k^2 + k$ must be a multiple of 2.
+
+\subsection{Conclusion}
+We have proved that $P(n)$ holds for a base case of $P(0)$ and that for all $n \in \mathbb Z_{\ge 0}$, $P(n)$ being true implies that $P(n + 1)$ is also true. Therefore $P(n)$ holds for all $n \ge 0$.
 
 
 \end{document}
