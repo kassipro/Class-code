@@ -1,0 +1,216 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\newcommand*{\Perm}[2]{{}^{#1}\!P_{#2}}%
+\title{Pre-test practice recitation}
+\date{\today}
+\author{CS161}
+\begin{document}
+\maketitle
+
+
+\section{General Instructions}
+Refer to the PDF in the class code (july-11/resources): \\
+\href{https://github.com/csu161/Class-code/blob/master/july-11/resources/inductive-proof-examples.pdf}{Inductive Proof Examples}
+
+
+\section{Counting}
+\begin{enumerate}
+\item How many non-negative integers less than 1000 (written with no leading zeros, but 0 is written as 0):
+  \begin{enumerate}
+  \item have exactly three digits? $1000 - 100$
+  \item have an odd number of digits? $10 + (1000 - 100)$
+  \item have at least one digit equal to 9? $1000 - 9^3$
+  \item have no odd digits? $5^3$
+  \item have two consecutive fives? $10 + 10 - 1$
+  \item are palindromes? $90 + 9 + 10$
+  \end{enumerate}
+
+\item How many ways are there to choose a dozen donuts from 20 varieties (this will \textbf{not} be on the test, it's weird [and cool!!])
+  \begin{enumerate}
+  \item if there are no two donuts of the same variety? $ \dbinom{20}{12} $
+  \item if all donuts are of the same variety? $ 20 $
+  \item if there are no restrictions? $ \dbinom{20 + 12 - 1}{12} $
+  \item if there are at least two varieties? $ \dbinom{20 + 12 - 1}{12} - 20 $
+  \item if there must be at least six blueberry donuts? $ \dbinom{20 + 6 - 1}{6} $
+  \end{enumerate}
+
+\item In how many different ways can five elements be selected in order from a set with three elements when repetition is allowed? $3^5$
+
+\item How many strings of six letters are there?
+  \begin{enumerate}
+  \item if only lowercase is allowed? $26^6$
+  \item if any case is allowed? $52^6$
+  \end{enumerate}
+
+\item In how many ways can you stack 7 different books, so that a specific book B is on the third place? $ \Perm{6}{6} $
+
+\item In how many ways can you take 3 marbles out of a box with 15 different marbles? $ \dbinom{15}{3} $
+
+\item In how many ways can you take 5 cards, with at least 2 aces, out of a deck of 52 cards? All hands minus hands with no aces or one ace:
+\[ \binom{52}{5} - \left( \binom{48}{5} + \binom{4}{1} * \binom{48}{4} \right) \]
+
+\item Find $n$ if
+  \begin{enumerate}
+  \item $\Perm{n}{2} = 110$, then $n = 11$
+  \item $\Perm{n}{n} = 5040$, then $n = 7$
+  \item $\Perm{n}{4} = 12 * \Perm{n}{2}$, then $n = 6$
+  \end{enumerate}
+
+\item Find $n$ if
+  \begin{enumerate}
+  \item $ \dbinom{n}{2} = 45 $, then $n = 10$
+  \item $ \dbinom{n}{3} = \Perm{n}{2} $, then $n = 8$
+  \item $ \dbinom{n}{5} = \dbinom{n}{2} $, then $n = 7$
+  \end{enumerate}
+
+\item If the numbers from 1 to 1000 are written out on a piece of paper, how many 9's are on that paper?
+
+Numbers with one nine multiplied by one, numbers with two nines multiplied by two, and numbers with three nines multiplied by three. The first expression in parentheses reads as "choose a place to put the 9 then multiply by the ways you can fill in the other two spaces with digits that aren't 9's.
+\[ 1 * \left( \binom{3}{1} * 9^2 \right) + 2 * \left( \binom{3}{2} * 9 \right) + 3 * \binom{3}{3} \]
+\end{enumerate}
+
+
+
+\section{Proofs}
+\begin{enumerate}
+\item Prove that for all positive integers, $n$:
+\[ \frac{2}{3} + \frac{2}{9} + \frac{2}{27} + ... + \frac{2}{3^n} = 1 - \frac{1}{3^n} \]
+
+Let:
+\[ F(n) = \frac{2}{3} + \frac{2}{9} + \frac{2}{27} + ... + \frac{2}{3^n} \]
+\[ P(n): F(n) = 1 - \frac{1}{3^n} \]
+We will prove that $P(n)$ holds for $n$ greater than 0.
+\[ \forall n \in N : P(n) \]
+
+Base case:
+\[ P(1): \frac{2}{3^1} = 1 - \frac{1}{3^1} \]
+\[ \frac{2}{3} = \frac{2}{3} \]
+
+Inductive step. We want to prove $P(k) \implies P(k+1)$ for $k \in N$.
+
+Inductive hypothesis, assume:
+\[ P(k): F(k) = 1 - \frac{1}{3^k} \]
+Now prove:
+\[ P(k + 1): F(k + 1) = 1 - \frac{1}{3^{k + 1}} \]
+Starting with the left side:
+
+\begin{equation*}
+\begin{aligned}
+F(k + 1) &= \frac{2}{3} + \frac{2}{9} + ... + \frac{2}{3^k} + \frac{2}{3^{k + 1}} \\
+&= F(k) + \frac{2}{3^{k + 1}} \\
+&= 1 - \frac{1}{3^k} + \frac{2}{3^{k + 1}} \\
+&= 1 - \frac{3}{3^{k + 1}} + \frac{2}{3^{k + 1}} \\
+&= 1 - \frac{1}{3^{k + 1}}
+\end{aligned}
+\end{equation*}
+
+We have shown that a base case of $P(1)$ holds and that $P(k) \implies P(k + 1)$ for $k \in N$. Therefore $P(n)$ holds for all $n \in N$.
+
+
+\item Which amounts of postage can you make using 5 and 9 cent stamps?
+
+We can make all postage 32 cents and greater. You can make 32 cents with three 9's and one 5. If you have a postage of $k$ where $k \geq 32$, you can get a postage of $k + 1$ in one of two ways:
+  \begin{enumerate}
+  \item If you have a 9 cent stamp in your $k$ postage, trade it for two 5's. Now you have $k + 1$ postage.
+\[ k = 9a + 5b \mid a,b \in \mathbb Z \]
+\[ 9(a - 1) + 5(b + 2) = 9a + 5b + 1 = k + 1\]
+  \item Otherwise, trade seven 5's for four 9's. If we have no 9's, then we must have at least seven 5's because we are only working with postages of 32 cents and greater, so trading seven 5's will not result in a negative number of 5 cent stamps.
+\[ k = 5b \mid b \in \mathbb Z \]
+\[ 9 * 4 + 5(b - 7) = 5b + 1 = k + 1 \]
+  \end{enumerate}
+
+\item Find $f(1)$, $f(2)$, $f(3)$, and $f(4)$ if $f(n)$ is defined recursively by $f(0) = 1$ and for $n = 0, 1, 2, ...$
+  \begin{enumerate}
+  \item $f(n + 1) = f(n) + 2$
+    \[ f(1) = 3, f(2) = 5, f(3) = 7, f(4) = 9\]
+  \item $f(n + 1) = 3f(n)$
+    \[ f(1) = 3, f(2) = 9, f(3) = 27, f(4) = 81\]
+  \item $f(n + 1) = 2^{f(n)}$
+    \[ f(1) = 2, f(2) = 4, f(3) = 16, f(4) = 65536\]
+  \item $f(n + 1) = f(n)^2 + f(n) + 1$
+    \[ f(1) = 3, f(2) = 13, f(3) = 183, f(4) = 33673\]
+  \end{enumerate}
+
+
+\item Let $P(n)$ be the statement that
+\[ 1 + \frac{1}{4} + \frac{1}{9} + ... + \frac{1}{n^2} < 2 - \frac{1}{n} \]
+where $n$ is an integer greater than 1.
+  \begin{enumerate}
+  \item What is the statement $P(2)$?
+\[ P(2): 1 + \frac{1}{2^2} < 2 - \frac{1}{2} \]
+
+  \item Show that $P(2)$ is true, completing the basis step of the proof.
+\[ P(2): \frac{5}{4} < \frac{3}{2} \]
+
+  \item What is the \textit{inductive hypothesis}? For $k > 1$,
+\[ P(k): 1 + \frac{1}{4} + ... + \frac{1}{k^2} < 2 - \frac{1}{k} \]
+
+  \item What do you need to prove in the inductive step? That $P(k)$ implies $P(k+1)$ for $k > 1$.
+
+  \item Complete the inductive step. Prove:
+\[ P(k+1): 1 + \frac{1}{4} + \frac{1}{9} + ... + \frac{1}{k^2} + \frac{1}{(k + 1)^2} < 2 - \frac{1}{k + 1} \]
+Starting with the left side:
+\[ 1 + \frac{1}{4} + ... + \frac{1}{k^2} + \frac{1}{(k + 1)^2} \]
+Using the inductive hypothesis:
+\[ 1 + \frac{1}{4} + ... + \frac{1}{k^2} + \frac{1}{(k + 1)^2} < 2 - \frac{1}{k} + \frac{1}{(k + 1)^2} \]
+If we could prove for $k > 1$ that
+\[ P'(k): 2 - \frac{1}{k} + \frac{1}{(k + 1)^2} \leq 2 - \frac{1}{k + 1} \]
+then we would be done. This is equivalent to proving that
+\[ P'(k): - \frac{1}{k} + \frac{1}{(k + 1)^2} \leq - \frac{1}{k + 1} \]
+which is equivalent to proving that
+\[ P'(k): \frac{1}{(k + 1)^2} \leq \frac{1}{k} - \frac{1}{k + 1} \]
+And since
+\[ \frac{1}{k} - \frac{1}{k + 1} = \frac{k + 1}{k(k + 1)} - \frac{k}{k(k + 1)} = \frac{1}{k(k + 1)} \]
+then $P'(k)$ is equivalent to
+\[ P'(k): \frac{1}{(k + 1)^2} \leq \frac{1}{k(k + 1)} \]
+which is equivalent to proving
+\[ P'(k): (k + 1)^2 \geq k(k + 1) \]
+which, because we are only working with $k > 1$ is equivalent to
+\[ P'(k): k + 1 \geq k \]
+which is clearly true. Therefore $P(k + 1)$ is true if $P(k)$ is true.
+
+  \item Explain why these steps show that this inequality is true for all $n$ where $n$ is an integer greater than 1.
+
+Since we have shown a base case of $P(2)$ to be true and that for all $n > 1$, that $P(n)$ implies $P(n + 1)$, we have proved that $P(n)$ holds for all $n > 1$.
+  \end{enumerate}
+
+\item Prove by induction that:
+\[ 1 + 3 + 5 + ... + (2n - 1) = n^2 \]
+
+Let:
+\[ F(n) = 1 + 3 + 5 + ... + (2n - 1) \]
+\[ P(n): F(n) = n^2 \]
+We will prove that $P(n)$ holds for $n$ greater than 0.
+\[ \forall n \in N : P(n) \]
+
+Base case:
+\[ P(1): 1 = 1^2 \]
+
+Inductive step. We want to prove $P(k) \implies P(k+1)$ for $k \in N$.
+
+Inductive hypothesis, assume:
+\[ P(k): F(k) = k^2 \]
+Now prove:
+\[ P(k + 1): F(k + 1) = (k + 1)^2 \]
+Starting with the left side:
+
+\begin{equation*}
+\begin{aligned}
+F(k + 1) &= 1 + 3 + 5 + ... + (2k - 1) + (2(k + 1) - 1) \\
+&= F(k) + (2(k + 1) - 1) \\
+&= k^2 + (2(k + 1) - 1) \\
+&= k^2 + 2k + 1 \\
+&= (k + 1)(k + 1) \\
+&= (k + 1)^2
+\end{aligned}
+\end{equation*}
+
+We have shown that a base case of $P(1)$ holds and that $P(k) \implies P(k + 1)$ for $k \in N$. Therefore $P(n)$ holds for all $n \in N$.
+\end{enumerate}
+
+
+
+\end{document}
