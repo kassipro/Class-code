@@ -27,6 +27,11 @@ public class AwesomeLink {
         next = newNext;
     }
 
+    @Override
+    public String toString() {
+        return "";
+    }
+
     public static void main(String[] args) {
         AwesomeLink a = new AwesomeLink(1);
         System.out.println("AwesomeLink a holds: " + a.getData());
@@ -37,5 +42,7 @@ public class AwesomeLink {
         for(int i = 0; i < 10; i++) {
             head = new AwesomeLink(i, head);
         }
+
+        AwesomeLink link = new AwesomeLink(9, new AwesomeLink(7, new AwesomeLink(5)));
     }
 }
