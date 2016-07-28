@@ -53,6 +53,8 @@ public class Queue {
             ((ModifiableNode) end).rest = newEnd;
             end = newEnd;
         }
+
+        notifyAll();
     }
 
     public static void main(String[] args) {
