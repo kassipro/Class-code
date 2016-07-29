@@ -1,4 +1,5 @@
 import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class Queue {
     private interface Qnode {
@@ -57,7 +58,43 @@ public class Queue {
         notifyAll();
     }
 
-    public static void main(String[] args) {
-        // exercise class, multiple threads blocked
+    public static void main(String[] args) throws InterruptedException {
+        final int c = 10;
+        Queue q = new Queue();
+
+        Thread[] consumers = new Thread[c];
+        Runnable task = () -> { System.out.println(Thread.currentThread().getName() + q.take()); };
+        Runnable task2 = new Runnable() {
+            public void run() {
+                System.out.println(Thread.currentThread().getName() + q.take());
+            }
+        };
+
+        for(int i = 0; i < c; ++i)
+            consumers[i] = new Thread(task, String.format("Thread %d: ", i));
+
+        Thread producer = new Thread(new Runnable() {
+            public void run() {
+                for(int i = 0; i < c; ++i) {
+                    try {
+                        Thread.sleep(100);//(int) (Math.random() * 3000));
+                    } catch (InterruptedException e) {}
+                    q.put(Integer.toHexString(i));
+                }
+            }
+        });
+
+        for(int i = c - 1; i >= 0; --i)
+            consumers[i].start();
+
+        Scanner kb = new Scanner(System.in);
+        System.out.println("Waiting to start producer.... type something and hit enter!");
+        kb.next();
+        producer.start();
+
+        for(int i = 0; i < c; ++i)
+            consumers[i].join();
+
+        System.out.println("All consumer threads are done!");
     }
 }
