@@ -1,6 +1,6 @@
 Node class
   * String, and next (private members)
-  * one and two arg constructor (one arg should call 2 arg)
+  * one and two arg constructor (one arg should call two arg)
   * getters, setters
 
 interface IList {
@@ -11,7 +11,7 @@ interface IList {
 }
 
 List class implements IList
-  * private Node head, private int size
+  * protected Node head, private int size
   * zero arg constructor
 
 Deque class extends List
@@ -41,5 +41,7 @@ interface ISet {
     boolean contains(String);
 }
 
-class Set implements ISet
-  * private member variable of List
+class Set extends List implements ISet
+  * use protected member variable to efficiently implement method
+    * private int positionOf(String)
+  * use position of to implement the other three methods
