@@ -1,0 +1,13 @@
+Node class
+  * String, and next (private members)
+  * one and two arg constructor
+  * getters, setters
+
+List class
+  * head, size
+  * zero arg constructor
+  * void add(String s, int position)
+  * void remove(int position)
+  * String get(int position)
+  * int size()
+  * String firstMatching(Predicate<String> test)

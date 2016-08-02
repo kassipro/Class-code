@@ -1,0 +1,47 @@
+Node class
+  * String, and next (private members)
+  * one and two arg constructor (one arg should call two arg)
+  * getters, setters
+
+interface IList {
+    void add(String, int);
+    void remove(int);
+    String get(int);
+    int size();
+}
+
+*****List class implements IList
+  * protected Node head, private int size
+  * zero arg constructor
+
+*****Deque class extends List
+  * void addFirst(String)
+  * void addLast(String)
+  * String popFirst()
+  * String popLast()
+
+interface IStack {
+    void push(String);
+    String peek();
+    String pop();
+}
+
+*****class Stack extends Deque implements IStack
+
+interface IQueue {
+    void add(String);
+    String take();
+}
+
+class Queue extends Deque implements IQueue
+
+interface ISet {
+    void add(String);
+    void remove(String);
+    boolean contains(String);
+}
+
+class Set extends List implements ISet
+  * use protected member variable to efficiently implement method
+    * private int positionOf(String)
+  * use position of to implement the other three methods

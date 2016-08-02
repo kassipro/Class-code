@@ -1,0 +1,23 @@
+Node class
+  * String, and next (private members)
+  * one and two arg constructor
+  * getters, setters
+
+List class
+  * Node head, int size
+  * zero arg constructor
+  * void add(String s, int position)
+  * void remove(int position)
+  * String get(int position)
+  * int size()
+
+Stack class
+  * member variable of a list:
+  * void push(String)
+  * String peek()
+  * String pop()
+
+Queue class
+  * member variable of a list:
+  * void add(String)
+  * String take()

@@ -33,7 +33,7 @@ public class RangeSeq implements IntSeq {
     }
 
     public static void main(String[] args) {
-        IntSeq seq = new RangeSeq(0, 12, 3);
+        IntSeq seq = new RangeSeq(1, 12, 3);
 
         while(true) {
             System.out.println(seq.next());
