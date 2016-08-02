@@ -10,13 +10,13 @@ interface IList {
     int size();
 }
 
-List class implements IList
+*****List class implements IList
   * protected Node head, private int size
   * zero arg constructor
 
-Deque class extends List
+*****Deque class extends List
   * void addFirst(String)
-  * void addList(String)
+  * void addLast(String)
   * String popFirst()
   * String popLast()
 
@@ -26,7 +26,7 @@ interface IStack {
     String pop();
 }
 
-class Stack extends Deque implements IStack
+*****class Stack extends Deque implements IStack
 
 interface IQueue {
     void add(String);

@@ -1,0 +1,26 @@
+1. Which of the following can be implemented with lists?
+  a. stacks
+  b. queues
+  c. sets
+  d. maps
+
+2. Consider the following class:
+class A {
+    public final List<String> strings;
+    public A(List<String> s) { strings = s; }
+}
+  Can code outside the class change
+  a. strings to a different list?
+  b. the string at position 0 of strings to a different string?
+  c. the char at position 0 of the string at position 0 of strings to a different char?
+  For d, e, f, the same questions but for code inside the class
+
+3. If I have an application where I want to look up student objects by their
+   corresponding student ID's, which type of data structure should I use?
+
+4. Why is binary search desirable?
+  a. it's easy to implement
+  b. it helps us keep data sorted
+  c. it requires a small amount of work relative to the number of elements
+
+5. Does binary search require the input to be sorted? Or is that just for performance?
